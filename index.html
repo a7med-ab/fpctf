@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS Vulnerable CTF Challenge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the XSS Challenge!</h1>
+        <p>Enter your name below:</p>
+        <form action="#" method="GET">
+            <input type="text" name="name" placeholder="Your name">
+            <button type="submit">Submit</button>
+        </form>
+        <div id="output">
+            <!-- Vulnerable output area -->
+            <p>Hello, <span id="user-input"></span>!</p>
+        </div>
+    </div>
+
+    <!-- Hidden Flag -->
+    <div id="flag" style="display: none;">PF{UFD4GSF45SFG8RR4152F2}</div>
+
+    <script>
+        // Vulnerable JavaScript code
+        const queryParams = new URLSearchParams(window.location.search);
+        const userInput = queryParams.get('name');
+        if (userInput) {
+            document.getElementById('user-input').innerHTML = userInput; // Vulnerable to XSS
+        }
+    </script>
+</body>
+</html>
