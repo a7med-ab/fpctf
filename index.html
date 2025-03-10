@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern E-Commerce</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <h1 class="logo">Shopify</h1>
+            <form action="#" method="GET" class="search-form">
+                <input type="text" name="name" placeholder="Search products..." class="search-input">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Product 1">
+                    <h3>Product 1</h3>
+                    <p>$19.99</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Product 2">
+                    <h3>Product 2</h3>
+                    <p>$29.99</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>$39.99</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vulnerable output area -->
+        <div id="output" class="search-results">
+            <p>Search results for: <span id="user-input"></span></p>
+        </div>
+    </main>
+
+    <!-- Hidden Flag -->
+    <div id="flag" style="display: none;">PF{UFD4GSF45SFG8RR4152F2}</div>
+
+    <script>
+        // Vulnerable JavaScript code
+        const queryParams = new URLSearchParams(window.location.search);
+        const userInput = queryParams.get('name');
+        if (userInput) {
+            document.getElementById('user-input').innerHTML = userInput; // Vulnerable to XSS
+        }
+    </script>
+</body>
+</html>
